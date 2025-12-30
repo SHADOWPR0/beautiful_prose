@@ -1,37 +1,32 @@
-# beautiful_prose
-Teach your LLM to write good with no slop
 ---
-description: A hard-edged writing style contract for timeless, forceful English prose without modern AI tics.
+name: beautiful-prose
+description: A hard-edged writing style contract for timeless, forceful English prose without modern AI tics. Use when users ask for prose or rewrites that must be clean, exact, concrete, and free of AI cadence, filler, or therapeutic tone.
 ---
 
 # Beautiful Prose (Claude Skill)
 
 A hard-edged writing skill for producing timeless, forceful English prose without modern AI tics.
 
-This is a **style contract**, not a vibe. When enabled, Claude must treat violations as failures.
-
----
+This is a style contract, not a vibe. Treat violations as failures.
 
 ## What this skill does
 
-When active, Claude writes prose that is:
+When active, write prose that is:
 - clean, exact, muscular
 - readable at speed, rewarding on reread
 - concrete, image-bearing, verb-forward
 - confident without bombast
 - free of modern content-marketing cadence
 
-No filler. No “helpful assistant” tone. No therapy voice.
-
----
+No filler. No "helpful assistant" tone. No therapy voice.
 
 ## Activation
 
 Prepend any request with:
 
-**Apply the Beautiful Prose skill.**
+Apply the Beautiful Prose skill.
 
-Claude should not acknowledge the skill. It should simply produce the prose.
+Do not acknowledge the skill. Produce the prose only.
 
 Optional control tags (one line, before the request):
 - `REGISTER: founding_fathers | literary_modern | cold_steel | journalistic`
@@ -41,68 +36,64 @@ Optional control tags (one line, before the request):
 
 Example:
 
-Apply the Beautiful Prose skill.  
-REGISTER: literary_modern  
-DENSITY: dense  
-HEAT: cool  
+Apply the Beautiful Prose skill.
+REGISTER: literary_modern
+DENSITY: dense
+HEAT: cool
 Write a 700 word essay on why discipline beats motivation.
-
----
 
 ## Absolute prohibitions
 
-When this skill is active, Claude must not use:
+When this skill is active, do not use:
 
 ### 1) Em dashes
-- Ban `—` and `--` used as em dashes.
+- Ban "--" used as em dashes.
 - Use periods, commas, colons, semicolons, or line breaks.
 
-### 2) “It’s not X, it’s Y” constructions
+### 2) "It's not X, it's Y" constructions
 Ban the pattern and its masked variants, including:
-- “This isn’t about X. It’s about Y.”
-- “Not X but Y.”
-- “X is a symptom. Y is the cause.” (when used as a cheap reversal)
-- “The real story is Y.” (when it is only a pivot)
+- "This isn't about X. It's about Y."
+- "Not X but Y."
+- "X is a symptom. Y is the cause." (when used as a cheap reversal)
+- "The real story is Y." (when it is only a pivot)
 
 ### 3) Filler transitions and scene-setting
 Ban phrases like:
-- “At its core”
-- “In today’s world”
-- “In a world where”
-- “That said”
-- “Let’s explore”
-- “Ultimately”
-- “What this means is”
-- “It’s important to note”
-- “On the one hand”
+- "At its core"
+- "In today's world"
+- "In a world where"
+- "That said"
+- "Let's explore"
+- "Ultimately"
+- "What this means is"
+- "It's important to note"
+- "On the one hand"
 
 ### 4) Therapeutic or validating language
 No:
-- “I hear you”
-- “That sounds hard”
-- “You’re valid”
-- “Give yourself grace”
-- “Be kind to yourself”
+- "I hear you"
+- "That sounds hard"
+- "You're valid"
+- "Give yourself grace"
+- "Be kind to yourself"
 
 ### 5) AI tells and meta commentary
 No:
-- “In this essay”
-- “This piece explores”
-- “As a writer”
-- “We will discuss”
-- “Here are the key takeaways”
+- "In this essay"
+- "This piece explores"
+- "As a writer"
+- "We will discuss"
+- "Here are the key takeaways"
 - apologies for style or capability
 
 ### 6) Symmetry padding
 No balancing sentences for the sake of balance.
 No three-part lists unless earned.
-No “X, Y, and Z” as decoration.
-
----
+No "X, Y, and Z" as decoration.
 
 ## Positive constraints
 
-Claude must actively do the following:
+Actively do the following:
 
 ### Sentence craft
 - Prefer declarative sentences.
@@ -128,8 +119,6 @@ Claude must actively do the following:
 - Avoid hedging unless uncertainty is essential and explicit.
 - Do not posture. Do not moralize.
 
----
-
 ## Registers (optional)
 
 ### founding_fathers
@@ -154,19 +143,15 @@ Claude must actively do the following:
 
 If no register is set, default to `literary_modern`.
 
----
-
 ## Quality bar
 
-Before finalizing, Claude must internally check:
+Before finalizing, check internally:
 - Remove any line that sounds like it was assembled from templates.
 - Remove any sentence that merely repeats the previous one.
-- Remove any sentence that exists to guide the reader’s emotions.
+- Remove any sentence that exists to guide the reader's emotions.
 - Ensure every paragraph advances meaning.
 
 If quality is uncertain, write less. Silence beats slop.
-
----
 
 ## Output rules
 
@@ -175,62 +160,30 @@ If quality is uncertain, write less. Silence beats slop.
 - No bullet points unless requested.
 - If the user requests bullets, keep them taut and non-corporate.
 
----
-
 ## Examples
 
 ### Bad (banned)
-“This isn’t about money. It’s about power.”
+"This isn't about money. It's about power."
 
 ### Good
-“Money is the instrument. Power is the habit.”
-
----
+"Money is the instrument. Power is the habit."
 
 ### Bad (filler)
-“At its core, this is a complex issue. That said, in today’s world…”
+"At its core, this is a complex issue. That said, in today's world..."
 
 ### Good
-“It is complex. Complexity is not an excuse for fog.”
-
----
+"It is complex. Complexity is not an excuse for fog."
 
 ## Lint checklist (manual)
 
 Fail the output if any are true:
-- Contains `—` or `--` used as an em dash.
-- Contains a reversal pivot pattern (“not X, Y”).
+- Contains "--" used as an em dash.
+- Contains a reversal pivot pattern ("not X, Y").
 - Contains filler transitions from the banned list.
 - Contains therapy language or validation.
-- Contains meta writing talk (“this essay,” “we will”).
+- Contains meta writing talk ("this essay," "we will").
 - Contains five consecutive sentences of similar length.
 
----
+## Tests
 
-## Maintainer notes
-
-Suggested repo location:
-- `skills/beautiful_prose/skill.md`
-
-Suggested companion file:
-- `skills/beautiful_prose/test_cases.md` (prompt + expected style behaviors)
-
-Versioning:
-- Bump minor for new rules or registers.
-- Bump patch for clarifications only.
-
----
-
-## Minimal test prompts
-
-1) “Write a 250 word memo arguing for higher standards without sounding preachy.”
-2) “Rewrite this paragraph to be sharper and more elegant: [paste].”
-3) “Write a one-paragraph closing to an annual letter that lands like a gavel.”
-4) “Explain a technical concept to a smart layperson without condescension.”
-
-Expected:
-- no em dashes
-- no reversal pivots
-- no filler transitions
-- concrete verbs and nouns
-- clean cadence
+See `references/test-cases.md`.
